@@ -1,12 +1,22 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Lenovo
- * Date: 15.06.2016
- * Time: 2:37
- */
+namespace App\Repositories;
+
+use App\User;
+
+
 class TaskRepository
 {
-
+    /**
+     * Get all of the tasks for a given user.
+     *
+     * @param  User  $user
+     * @return Collection
+     */
+    public function forUser(User $user)
+    {
+        return $user->tasks()
+            ->orderBy('created_at', 'asc')
+            ->get();
+    }
 }
